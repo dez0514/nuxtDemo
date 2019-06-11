@@ -7,7 +7,7 @@
                     <el-input v-model="editData.title"></el-input>
                 </el-form-item>
                 <el-form-item label="文章类型" prop="type">
-                    <el-select v-model="secValue" placeholder="请选择文章类型" @blur="onSecBlur($event)" @change="onSecChange($event)">
+                    <el-select v-model="secValue" clearable placeholder="请选择文章类型" @blur="onSecBlur($event)" @change="onSecChange($event)">
                         <el-option
                         v-for="item in secOptions"
                         :key="item.secValue"
@@ -30,8 +30,8 @@
                     </div>
                 </el-form-item>
                 <el-form-item>
-                <el-button type="primary" @click="submitNews('editForm')">立即发表</el-button>
-                <el-button @click="resetForm('editForm')">重置</el-button>
+                    <el-button style="margin-bottom:20px" type="primary" @click="submitNews('editForm')">立即发表</el-button>
+                    <el-button @click="resetForm('editForm')">重置</el-button>
                 </el-form-item>
             </el-form>
         </div>
