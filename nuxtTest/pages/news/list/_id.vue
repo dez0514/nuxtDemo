@@ -17,17 +17,12 @@
     </div>
 </template>
 <script>
+import $http from '../../../action/http'
 import mypage from '../../../components/pagination.vue'
 export default {
     data() {
         return {
-            list: [
-                {id:0,title:'dez老帅了',author: 'dez',date:'2018/8/27',content:'陈珍，哈哈哈哈哈哈，'},
-                {id:1,title:'老帅了',author: 'dez',date:'2018/8/28',content:'哈哈哈哈哈哈'},
-                {id:2,title:'hahah',author: 'dez',date:'2018/8/28',content:'哈哈哈哈哈哈'},
-                {id:3,title:'真棒',author: 'dez',date:'2018/8/28',content:'哈哈哈哈哈哈'},
-                {id:4,title:'五月天',author: 'dez',date:'2018/8/28',content:'哈哈哈哈哈哈'}
-            ],
+            list: [],
             records: 15, // 总数据条数
             pageSize: 2, // 每页条数
             currentPage: Number(this.$route.params.id) // 当前页
@@ -56,10 +51,18 @@ export default {
         onPageChange(e) {
             console.log(1,e)
             this.$router.push(`/news/list/${e}`)
+        },
+        getlist(){
+            $http.get('/api/article',{}).then(data => {
+                console.log(555,data)
+                this.list = data
+            }).catch(err => {
+                console.log(666,err)
+            })
         }
     },
     mounted() {
-
+        this.getlist()
     }
 }
 </script>
